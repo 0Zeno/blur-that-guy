@@ -27,8 +27,8 @@ export default function Home() {
       </nav>
 
       <div className="flex flex-1">
-        <aside className="flex flex-col border-r w-1/6 px-4 pt-4 space-y-2">
-          <p className="text-xs">
+        <aside className="flex flex-col border-r w-1/6 px-4 py-4">
+          <p className="text-xs mb-2">
             Backend:
             {health ? (
               <span className="text-xs pl-1 text-green-500 font-semibold">running</span>
@@ -51,14 +51,17 @@ export default function Home() {
             />
           </div>
 
+          <div className="flex-1" />
+
           <Button disabled={!file} onClick={() => processVideo(file!)}>
             Process video
           </Button>
         </aside>
-        <div className="m-4 flex-1 border text-gray-500 bg-gray-100 rounded-xl flex justify-center items-center relative overflow-hidden">
+        <div className="m-4 flex-1 flex justify-center items-center">
           {loading ? (
-            <div className="flex flex-col items-center gap-2">
-              <p className="text-sm">Processing...</p>
+            <div className="flex flex-col items-center gap-3 text-gray-600">
+              <div className="w-8 h-8 border-2 border-gray-600 border-t-transparent rounded-full animate-spin" />
+              <p className="text-sm">Processing video...</p>
             </div>
           ) : url ? (
             <video src={url} controls autoPlay className="max-h-full max-w-full rounded-xl" />
@@ -70,7 +73,7 @@ export default function Home() {
               className="max-h-full max-w-full rounded-xl"
             />
           ) : (
-            <p>No video uploaded yet :(</p>
+            <p className="text-gray-500 text-sm">No video uploaded yet</p>
           )}
         </div>
       </div>
