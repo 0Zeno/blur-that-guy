@@ -24,7 +24,6 @@ export default function Home() {
 
       <div className="flex flex-1">
         <aside className="flex flex-col border-r w-1/6 px-4 pt-4 space-y-2">
-          
           <div
             onClick={handleClick}
             className="cursor-pointer border text-gray-500 text-sm flex flex-col justify-center items-center rounded-xl border-dashed h-32 hover:bg-gray-50"
@@ -40,7 +39,7 @@ export default function Home() {
             />
           </div>
 
-          <Button disabled={!file} >Process video</Button>
+          <Button disabled={!file}>Process video</Button>
         </aside>
         <div className="m-4 flex-1 border text-gray-500 bg-gray-100 rounded-xl flex justify-center items-center">
           {file ? (
