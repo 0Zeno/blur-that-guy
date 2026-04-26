@@ -50,7 +50,7 @@ export default function Home() {
             className="cursor-pointer border text-gray-500 text-sm flex flex-col justify-center items-center rounded-xl border-dashed h-32 hover:bg-gray-50 shrink-0"
           >
             <Upload size={18} />
-            <p>{file ? file.name : "Select video"}</p>
+            <p>Select video</p>
             <input
               ref={inputRef}
               type="file"
