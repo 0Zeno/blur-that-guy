@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "dev": "react-router dev",
+    "dev:frontend": "react-router dev",
+    "dev": "concurrently -k --kill-others-on-fail \"pnpm dev:frontend\" \"uvicorn server.main:app --reload\"",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "format": "exec prettier . --write"
@@ -33,6 +34,7 @@
     "@types/node": "^22",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "concurrently": "^9.2.1",
     "prettier": "3.8.3",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3",

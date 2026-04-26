@@ -4,3 +4,4 @@ coverage
 node_modules/
 migrations/
 pnpm-lock.yaml
+server

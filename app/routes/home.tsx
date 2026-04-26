@@ -1,10 +1,14 @@
 import { Button } from "~/components/ui/button";
 import { Upload } from "lucide-react";
 import { useState, useRef, type ChangeEvent } from "react";
+import { useHealth } from "~/hooks/use-health";
+import { useBlur } from "~/hooks/use-blur";
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const health = useHealth();
+  const { processVideo, url, loading } = useBlur();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -24,6 +28,14 @@ export default function Home() {
 
       <div className="flex flex-1">
         <aside className="flex flex-col border-r w-1/6 px-4 pt-4 space-y-2">
+          <p className="text-xs">
+            Backend:
+            {health ? (
+              <span className="text-xs pl-1 text-green-500 font-semibold">running</span>
+            ) : (
+              <span className="text-xs pl-1 text-red-500 font-semibold">down</span>
+            )}
+          </p>
           <div
             onClick={handleClick}
             className="cursor-pointer border text-gray-500 text-sm flex flex-col justify-center items-center rounded-xl border-dashed h-32 hover:bg-gray-50"
@@ -39,10 +51,18 @@ export default function Home() {
             />
           </div>
 
-          <Button disabled={!file}>Process video</Button>
+          <Button disabled={!file} onClick={() => processVideo(file!)}>
+            Process video
+          </Button>
         </aside>
-        <div className="m-4 flex-1 border text-gray-500 bg-gray-100 rounded-xl flex justify-center items-center">
-          {file ? (
+        <div className="m-4 flex-1 border text-gray-500 bg-gray-100 rounded-xl flex justify-center items-center relative overflow-hidden">
+          {loading ? (
+            <div className="flex flex-col items-center gap-2">
+              <p className="text-sm">Processing...</p>
+            </div>
+          ) : url ? (
+            <video src={url} controls autoPlay className="max-h-full max-w-full rounded-xl" />
+          ) : file ? (
             <video
               src={URL.createObjectURL(file)}
               controls
