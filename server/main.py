@@ -2,7 +2,6 @@ from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import FileResponse
 import tempfile, shutil, subprocess, logging, uuid, base64
 import cv2
-import numpy as np
 from ultralytics import YOLO
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
